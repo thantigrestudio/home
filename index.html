@@ -3,128 +3,284 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seu Site</title>
+    <title>ThanTigre Studio</title>
 
     <style>
         /* RESET */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            background: #121212;
-            color: white;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0d0f26;
+            color: #eee;
+            overflow-x: hidden;
         }
 
-        /* NAVBAR */
-        .navbar {
+        /* ANIMAÇÕES GLOBAIS */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(40px);
+            animation: fadeUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* HEADER */
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(9, 10, 31, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
             justify-content: center;
-            align-items: center;
-            padding: 1rem 2rem;
-            background: #111;
-            color: white;
             position: relative;
-            width: 100%;
         }
 
-        /* Menu no PC */
         .nav-menu {
             list-style: none;
             display: flex;
-            gap: 2rem;
+            gap: 2.2rem;
+            transition: 0.3s ease;
         }
 
         .nav-menu li a {
-            color: white;
+            color: #fff;
             text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: 0.3s ease;
+        }
+
+        .nav-menu li a:hover {
+            opacity: 0.6;
+        }
+
+        /* HAMBURGUER */
+        .hamburger {
+            display: none;
+            font-size: 2.2rem;
+            color: white;
+            background: none;
+            border: none;
+            cursor: pointer;
+            position: absolute;
+            right: 0;
+        }
+
+        /* HERO */
+        .hero {
+            height: 90vh;
+            background: linear-gradient(150deg, #090a1f, #141637, #090a1f);
+            background-size: 400% 400%;
+            animation: gradientBG 12s ease infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .logo-img {
+            width: 170px;
+            height: 170px;
+            animation: fadeUp 1s ease forwards, float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+
+        h1 {
+            font-size: 3.2rem;
+            margin: 1rem 0;
+            letter-spacing: 1px;
+        }
+
+        .btn {
+            padding: 0.9rem 2.4rem;
+            background-color: white;
+            color: #090a1f;
+            text-decoration: none;
+            border-radius: 40px;
+            font-weight: bold;
             font-size: 1.1rem;
             transition: 0.3s;
         }
 
-        .nav-menu li a:hover {
-            opacity: 0.7;
+        .btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 25px rgba(0,0,0,0.4);
         }
 
-        /* Botão hambúrguer (celular) */
-        .hamburger {
-            display: none;
-            background: none;
-            font-size: 2rem;
-            border: none;
-            color: white;
-            cursor: pointer;
-            position: absolute;
-            right: 20px;
+        /* SESSÕES */
+        .section {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 2rem;
         }
 
-        /* ==================== CELULAR ==================== */
-        @media (max-width: 768px) {
-            .hamburger {
-                display: block;
-            }
+        .section h2 {
+            font-size: 2.3rem;
+            margin-bottom: 1.5rem;
+            color: #4da3ff;
+        }
 
-            /* Menu escondido inicialmente */
+        .section p {
+            line-height: 1.8;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* CARDS DE SKILLS */
+        .skills-grid {
+            margin-top: 2rem;
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        }
+
+        .skill-card {
+            background: #141637;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            transition: 0.3s;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s ease forwards;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+        }
+
+        footer {
+            background: #090a1f;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        /* RESPONSIVIDADE */
+        @media(max-width: 800px) {
+
+            .hamburger { display: block; }
+
             .nav-menu {
-                display: none;
                 position: absolute;
-                top: 70px;
+                top: 64px;
                 right: 0;
-                background: #111;
+                background: rgba(9,10,31,0.95);
                 width: 100%;
                 flex-direction: column;
                 text-align: center;
-                padding: 1rem 0;
-                border-top: 1px solid #222;
+                padding: 2rem 0;
+                gap: 1.4rem;
+                transform: translateY(-500px);
+                opacity: 0;
+                transition: 0.4s ease;
             }
 
-            /* Menu mostrado */
             .nav-menu.active {
-                display: flex;
+                transform: translateY(0);
+                opacity: 1;
             }
 
-            .nav-menu li {
-                margin-bottom: 1rem;
-            }
+            h1 { font-size: 2.4rem; }
         }
+
     </style>
 </head>
-
 <body>
 
-    <!-- HEADER COMPLETO -->
+    <!-- HEADER -->
     <header>
-        <nav class="navbar">
+        <nav>
+            <button class="hamburger" onclick="toggleMenu()">☰</button>
 
-            <!-- Botão hambúrguer -->
-            <button class="hamburger" id="hamburger">☰</button>
-
-            <!-- Menu -->
-            <ul class="nav-menu" id="nav-menu">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">Sobre</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#contact">Contato</a></li>
+            <ul class="nav-menu" id="menu">
+                <li><a href="#home" onclick="toggleMenu()">Home</a></li>
+                <li><a href="#about" onclick="toggleMenu()">Sobre</a></li>
+                <li><a href="#skills" onclick="toggleMenu()">Skills</a></li>
+                <li><a href="#contact" onclick="toggleMenu()">Contato</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- CONTEÚDO SÓ PRA TESTAR -->
-    <section id="home" style="padding: 40px; text-align: center;">
-        <h1>Bem-vindo ao site</h1>
-        <p>Conteúdo de teste...</p>
+    <!-- HERO -->
+    <section class="hero" id="home">
+        <div class="hero-content fade-up">
+            <img src="STUDIOz.png" class="logo-img" alt="Logo">
+            <h1>ThanTigre Studio</h1>
+            <p>Desenvolvimento de Apps e Soluções Modernas</p>
+            <a href="#contact" class="btn">Entrar em Contato</a>
+        </div>
     </section>
 
-    <script>
-        const hamburger = document.getElementById("hamburger");
-        const navMenu = document.getElementById("nav-menu");
+    <!-- SOBRE -->
+    <section class="section fade-up" id="about">
+        <h2>Sobre Mim</h2>
+        <p>
+            Sou desenvolvedor mobile focado em criar aplicativos modernos, rápidos e intuitivos.
+            Trabalho com tecnologias atuais e busco sempre a melhor experiência para o usuário.
+        </p>
+        <br>
+        <p>
+            Minha missão é transformar ideias em produtos reais com desempenho, beleza e eficiência.
+        </p>
+    </section>
 
-        hamburger.addEventListener("click", () => {
-            navMenu.classList.toggle("active");
-        });
+    <!-- SKILLS -->
+    <section class="section fade-up" id="skills">
+        <h2>Minhas Competências</h2>
+
+        <div class="skills-grid">
+            <div class="skill-card"><h3>Desenvolvimento Mobile</h3><p>Apps Android rápidos e profissionais</p></div>
+            <div class="skill-card"><h3>Design UX/UI</h3><p>Interfaces bonitas, modernas e intuitivas</p></div>
+            <div class="skill-card"><h3>Inovação</h3><p>Criação de soluções criativas e eficazes</p></div>
+            <div class="skill-card"><h3>Suporte Técnico</h3><p>Atendimento completo com rapidez</p></div>
+        </div>
+    </section>
+
+    <!-- CONTATO -->
+    <section class="section fade-up" id="contact">
+        <h2>Entre em Contato</h2>
+        <p>Email: <strong>thantigre.studio@gmail.com</strong></p>
+        <p>Localização: Caldas Novas - GO</p>
+        <p>Aberto para projetos e colaborações.</p>
+    </section>
+
+    <footer>
+        © 2025 ThanTigre Studio — Todos os direitos reservados.
+    </footer>
+
+    <!-- SCRIPT MENU -->
+    <script>
+        function toggleMenu() {
+            document.getElementById("menu").classList.toggle("active");
+        }
     </script>
 
 </body>
