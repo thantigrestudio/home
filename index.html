@@ -9,29 +9,54 @@
         * { margin:0; padding:0; box-sizing:border-box; }
 
         body {
-            font-family: "Poppins", Arial, sans-serif;
+            font-family:"Poppins", Arial, sans-serif;
             background:#0d0e24;
             color:#e6e6e6;
             overflow-x:hidden;
+            transition:.4s;
         }
 
-        /* ---------- NAV ---------- */
+        body.light {
+            background:#f2f4ff;
+            color:#222;
+        }
+
+        .cursor-light {
+            position:fixed;
+            width:350px;
+            height:350px;
+            pointer-events:none;
+            border-radius:50%;
+            background:radial-gradient(circle, rgba(76,201,255,0.35) 0%, transparent 70%);
+            filter:blur(50px);
+            opacity:0.55;
+            transform:translate(-50%, -50%);
+            z-index:5;
+        }
+
         header {
             background:#090a1f;
             position:sticky;
             top:0;
             z-index:999;
-            box-shadow:0 4px 20px rgba(0,0,0,0.25);
+            padding:1.2rem 0;
+            box-shadow:0 4px 20px rgba(0,0,0,0.35);
+            transition:.3s;
+        }
+
+        body.light header {
+            background:#ffffff;
+            box-shadow:0 4px 20px rgba(0,0,0,0.1);
         }
 
         nav {
             max-width:1200px;
             margin:auto;
-            padding:1.2rem;
             display:flex;
             justify-content:center;
             align-items:center;
             position:relative;
+            padding:0 1rem;
         }
 
         .nav-menu {
@@ -45,12 +70,16 @@
             text-decoration:none;
             font-weight:600;
             font-size:1.05rem;
-            transition:0.25s ease;
+            transition:.25s;
+        }
+
+        body.light .nav-menu a {
+            color:#222;
         }
 
         .nav-menu a:hover {
-            text-shadow:0 0 8px #4cc9ff;
             color:#4cc9ff;
+            text-shadow:0 0 10px #4cc9ff;
         }
 
         .hamburger {
@@ -64,12 +93,31 @@
             cursor:pointer;
         }
 
-        /* ---------- HERO ---------- */
+        .theme-toggle {
+            position:absolute;
+            right:4rem;
+            font-size:1.45rem;
+            cursor:pointer;
+            color:#4cc9ff;
+            transition:.3s;
+        }
+
+        body.light .theme-toggle {
+            color:#005577;
+        }
+
         .hero {
             background:linear-gradient(180deg,#090a1f 0%,#13153a 100%);
             padding:6rem 1rem 5rem;
             text-align:center;
             animation:heroFade 1.5s ease forwards;
+            position:relative;
+            overflow:hidden;
+            transition:.3s;
+        }
+
+        body.light .hero {
+            background:linear-gradient(180deg,#e4e7ff 0%,#d3d8ff 100%);
         }
 
         @keyframes heroFade {
@@ -83,12 +131,13 @@
             display:flex;
             flex-direction:column;
             gap:1.5rem;
+            position:relative;
+            z-index:2;
         }
 
         .logo-img {
             width:160px;
             margin:auto;
-            display:block;
             animation:float 3.5s ease-in-out infinite;
         }
 
@@ -100,8 +149,13 @@
         .hero h1 {
             font-size:3rem;
             font-weight:700;
-            text-shadow:0 0 12px #4cc9ff;
             color:#4cc9ff;
+            text-shadow:0 0 12px #4cc9ff;
+        }
+
+        body.light .hero h1 {
+            color:#005577;
+            text-shadow:none;
         }
 
         .hero p {
@@ -110,19 +164,19 @@
         }
 
         .btn {
-            padding:0.9rem 2rem;
+            padding:.9rem 2rem;
             background:#4cc9ff;
             color:#090a1f;
+            border-radius:50px;
             font-weight:700;
             text-decoration:none;
-            border-radius:50px;
             font-size:1.1rem;
-            transition:.25s ease;
+            transition:.25s;
         }
 
         .btn:hover {
-            box-shadow:0 0 15px #4cc9ff;
             transform:translateY(-4px);
+            box-shadow:0 0 18px #4cc9ff;
         }
 
         .container {
@@ -134,12 +188,18 @@
         section.card {
             background:#13162f;
             border-radius:14px;
-            padding:2.2rem;
+            padding:2rem;
             margin-bottom:2rem;
-            box-shadow:0 4px 25px rgba(0,0,0,0.25);
             opacity:0;
-            transform:translateY(30px);
+            transform:translateY(40px);
             transition:1s ease;
+            border:1px solid rgba(76,201,255,0.15);
+            perspective:1000px;
+        }
+
+        body.light section.card {
+            background:#ffffff;
+            border-color:#d3eaff;
         }
 
         section.card.visible {
@@ -149,24 +209,26 @@
 
         h2 {
             color:#4cc9ff;
-            text-shadow:0 0 8px #4cc9ff;
             font-size:1.8rem;
             margin-bottom:1rem;
-            font-weight:600;
+            text-shadow:0 0 8px #4cc9ff;
+        }
+
+        body.light h2 {
+            color:#005577;
+            text-shadow:none;
         }
 
         p {
             line-height:1.7;
             font-size:1.05rem;
-            color:#cfcfcf;
         }
 
-        /* ---------- SKILLS ---------- */
         .skills-grid {
             display:grid;
             grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
             gap:1.4rem;
-            margin-top:1rem;
+            margin-top:1.3rem;
         }
 
         .skill-card {
@@ -175,13 +237,13 @@
             border-radius:12px;
             text-align:center;
             border:1px solid rgba(76,201,255,0.15);
-            transition:.3s;
+            transition:.15s ease-out;
+            transform-style:preserve-3d;
         }
 
-        .skill-card:hover {
-            transform:translateY(-6px);
-            box-shadow:0 0 18px #4cc9ff55;
-            border-color:#4cc9ff;
+        body.light .skill-card {
+            background:#f6f8ff;
+            border-color:#d3eaff;
         }
 
         .skill-card h3 {
@@ -189,23 +251,19 @@
             margin-bottom:.5rem;
         }
 
-        /* ---------- CONTATO ---------- */
-        #contact {
-            text-align:center;
+        body.light .skill-card h3 {
+            color:#005577;
         }
 
         footer {
             text-align:center;
             padding:2rem 1rem;
             color:#999;
-            font-size:.95rem;
         }
 
-        /* MOBILE */
         @media (max-width:800px) {
-            nav { justify-content:flex-start; }
-
             .hamburger { display:block; }
+            .theme-toggle { right:3.5rem; }
 
             .nav-menu {
                 position:absolute;
@@ -219,6 +277,10 @@
                 display:none;
             }
 
+            body.light .nav-menu {
+                background:#ffffff;
+            }
+
             .nav-menu.active { display:flex; }
         }
     </style>
@@ -226,9 +288,12 @@
 
 <body>
 
+<div class="cursor-light"></div>
+
 <header>
     <nav>
         <button class="hamburger" id="hamburger">☰</button>
+        <div class="theme-toggle" id="themeToggle">🌙</div>
         <ul class="nav-menu" id="nav-menu">
             <li><a href="#home">Home</a></li>
             <li><a href="#about">Sobre</a></li>
@@ -251,8 +316,7 @@
 
     <section id="about" class="card">
         <h2>Sobre Mim</h2>
-        <p>Sou desenvolvedor de aplicativos móveis focado em transformar ideias em produtos reais,
-           modernos e práticos. Construo soluções eficientes com design intuitivo e tecnologia atual.</p>
+        <p>Sou desenvolvedor de aplicativos móveis focado em criar soluções inovadoras e objetivas. Transformo ideias reais em produtos modernos, rápidos e eficientes.</p>
     </section>
 
     <section id="skills" class="card">
@@ -292,6 +356,32 @@
     }, { threshold:0.2 });
 
     cards.forEach(card => observer.observe(card));
+
+    const cursorLight = document.querySelector(".cursor-light");
+
+    document.addEventListener("mousemove", e => {
+        cursorLight.style.left = e.clientX + "px";
+        cursorLight.style.top = e.clientY + "px";
+    });
+
+    document.querySelectorAll(".skill-card").forEach(card => {
+        card.addEventListener("mousemove", e => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width/2;
+            const y = e.clientY - rect.top - rect.height/2;
+            card.style.transform = `rotateY(${x/20}deg) rotateX(${-y/20}deg)`;
+        });
+        card.addEventListener("mouseleave", () => {
+            card.style.transform = "rotateY(0) rotateX(0)";
+        });
+    });
+
+    const themeToggle = document.getElementById("themeToggle");
+
+    themeToggle.onclick = () => {
+        document.body.classList.toggle("light");
+        themeToggle.textContent = document.body.classList.contains("light") ? "🌞" : "🌙";
+    };
 </script>
 
 </body>
