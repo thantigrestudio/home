@@ -5,10 +5,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>ThanTigre Studio</title>
     <style>
-        /* RESET */
         * { margin:0; padding:0; box-sizing:border-box; }
 
-        /* BASE */
         body {
             font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
             background:#f9f9f9;
@@ -17,7 +15,6 @@
             -moz-osx-font-smoothing:grayscale;
         }
 
-        /* HEADER / NAV */
         header {
             background:#090a1f;
             color:#fff;
@@ -32,7 +29,7 @@
             margin:0 auto;
             padding:1rem 1.25rem;
             display:flex;
-            justify-content:center; /* menu centralizado */
+            justify-content:center;
             align-items:center;
             position:relative;
         }
@@ -66,7 +63,6 @@
             cursor:pointer;
         }
 
-        /* HERO */
         .hero {
             background:linear-gradient(180deg, #090a1f 0%, #141637 100%);
             color:#fff;
@@ -80,7 +76,7 @@
             display:flex;
             flex-direction:column;
             align-items:center;
-            gap:1.25rem; /* espaçamento garantido */
+            gap:1.25rem;
         }
 
         .logo-img {
@@ -116,7 +112,6 @@
 
         .btn:hover { transform:translateY(-4px); box-shadow:0 10px 20px rgba(0,0,0,0.15); }
 
-        /* CONTAINER / SECTIONS */
         .container {
             max-width:1200px;
             margin:2rem auto;
@@ -134,7 +129,6 @@
         section.card h2 { color:#090a1f; margin-bottom:.75rem; font-size:1.6rem; }
         section.card p { color:#555; line-height:1.7; }
 
-        /* SKILLS GRID */
         .skills-grid {
             display:grid;
             grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
@@ -153,7 +147,6 @@
 
         .skill-card:hover { transform:translateY(-6px); box-shadow:0 12px 30px rgba(9,10,31,0.12); }
 
-        /* FOOTER */
         footer {
             text-align:center;
             padding:2rem 1rem;
@@ -161,7 +154,6 @@
             font-size:.95rem;
         }
 
-        /* RESPONSIVO - MENU HAMBURGER */
         @media (max-width:800px) {
             .hamburger { display:block; }
 
@@ -192,7 +184,6 @@
             .nav-menu a { font-size:1.05rem; padding:.35rem 0; }
         }
 
-        /* Pequenos ajustes para telas muito pequenas */
         @media (max-width:420px) {
             .hero h1 { font-size:1.8rem; }
             .logo-img { width:120px; }
@@ -201,7 +192,6 @@
 </head>
 <body>
 
-    <!-- HEADER -->
     <header>
         <nav aria-label="Navegação principal">
             <button class="hamburger" id="hamburger" aria-controls="nav-menu" aria-expanded="false" aria-label="Abrir menu">☰</button>
@@ -215,10 +205,9 @@
         </nav>
     </header>
 
-    <!-- HERO -->
+
     <section class="hero" id="home">
         <div class="hero-content" role="region" aria-labelledby="hero-title">
-            <!-- Atenção: confira o nome do arquivo e maiúsculas/minúsculas em STUDIO.png -->
             <img src="STUDIOz.png" alt="ThanTigre Studio Logo" class="logo-img" onerror="this.style.display='none'">
             <h1 id="hero-title">ThanTigre Studio</h1>
             <p>Desenvolvimento de Apps e Soluções Modernas — design, performance e experiência do usuário.</p>
@@ -226,7 +215,6 @@
         </div>
     </section>
 
-    <!-- CONTEÚDO -->
     <main class="container">
         <section id="about" class="card">
             <h2>Sobre Mim</h2>
@@ -256,7 +244,6 @@
     </footer>
 
     <script>
-        // Menu hambúrguer: toggle + fechar ao clicar no link
         const hamburger = document.getElementById('hamburger');
         const menu = document.getElementById('nav-menu');
 
@@ -270,7 +257,6 @@
             setAria(isOpen);
         });
 
-        // fecha menu ao clicar em qualquer link (útil em mobile)
         menu.querySelectorAll('a').forEach(a => {
             a.addEventListener('click', () => {
                 if (menu.classList.contains('active')) {
@@ -280,7 +266,6 @@
             });
         });
 
-        // opcional: fecha menu ao clicar fora (mobile)
         document.addEventListener('click', (e) => {
             if (!menu.contains(e.target) && !hamburger.contains(e.target) && menu.classList.contains('active')) {
                 menu.classList.remove('active');
